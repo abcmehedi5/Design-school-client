@@ -1,12 +1,11 @@
 import React from "react";
+import Cover from "../Cover/Cover";
 const Home = () => {
   return (
-    <>
-      <h1>mehedi</h1>
-      <h1>mehedi</h1>
-      <h1>mehedi</h1>
-      <h1>mehedi</h1>
-    </>
+    // <div className="max-w-[1400px] mx-auto">
+    <div>
+      <Cover></Cover>
+    </div>
   );
 };
 
