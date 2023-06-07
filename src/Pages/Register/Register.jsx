@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 import { AuthContext } from "../../Providers/AuthProvider";
@@ -6,6 +6,7 @@ import useToast from "../../Hooks/useToast";
 
 const Register = () => {
   const { createUserEmail, updateUserProfile } = useContext(AuthContext);
+  const [loading, setLoading] = useState(false);
   const {
     register,
     handleSubmit,
@@ -13,19 +14,35 @@ const Register = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    const email = data.email;
-    const password = data.password;
-    const name = data.name;
-    const photoURL =
-      "https://img.freepik.com/free-photo/man-wearing-t-shirt-gesturing_23-2149393645.jpg";
-    createUserEmail(email, password)
+    setLoading(true);
+    const formData = new FormData();
+    formData.append("image", data.image[0]);
+    fetch(
+      `https://api.imgbb.com/1/upload?key=132b873aeba0a9d4de363955fe04a522`,
+      {
+        method: "POST",
+        body: formData,
+      }
+    )
+      .then((res) => res.json())
       .then((result) => {
-        const user = result.user;
-        updateProfile(user, name, photoURL);
-        useToast("success", "account create successfull");
-      })
-      .catch((error) => {
-        useToast("error", error.message);
+        if (result.success) {
+          const photoURL = result.data.display_url;
+          const email = data.email;
+          const password = data.password;
+          const name = data.name;
+          createUserEmail(email, password)
+            .then((result) => {
+              const user = result.user;
+              updateProfile(user, name, photoURL);
+              useToast("success", "account create successfull");
+              setLoading(false);
+            })
+            .catch((error) => {
+              useToast("error", error.message);
+              setLoading(false);
+            });
+        }
       });
   };
 
@@ -143,11 +160,23 @@ const Register = () => {
               </p>
             )}
           </div>
+          <label
+            htmlFor="image"
+            className="block text-gray-700 text-sm font-bold mb-2"
+          >
+            Your Profile Photo
+          </label>
+          <input
+            type="file"
+            id="image"
+            {...register("image", { required: true })}
+            className="file-input file-input-bordered file-input-md w-full  mb-10"
+          />
           <button
             type="submit"
-            className="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition-colors duration-300"
+            className="w-full flex items-center gap-2 justify-center bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition-colors duration-300"
           >
-            Register
+             {loading && <span className="loading loading-spinner loading-md"></span>} Register
           </button>
         </form>
         <SocialLogin></SocialLogin>
