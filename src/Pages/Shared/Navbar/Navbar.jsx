@@ -1,9 +1,19 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../Providers/AuthProvider";
+import useToast from "../../../Hooks/useToast";
 
 const Navbar = () => {
-  const { user,logOut } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
+  const handleLogout = () => {
+    logOut()
+      .then((result) => {
+        useToast("success", "logout successfull");
+      })
+      .catch((error) => {
+        useToast("error", error.message);
+      });
+  };
   return (
     <div className="navbar bg-base-300">
       <div className="navbar-start">
@@ -60,21 +70,31 @@ const Navbar = () => {
           <li>
             <Link to="classes">Classes</Link>
           </li>
-          <li>
-            <Link to="/dashboard/admin-home">Dashboard</Link>
-          </li>
+          {user && (
+            <li>
+              <Link to="/dashboard/admin-home">Dashboard</Link>
+            </li>
+          )}
+          {!user && (
+            <li>
+              <Link to="/login">Login</Link>
+            </li>
+          )}
         </ul>
       </div>
       <div className="navbar-end">
-        <Link to="/login" className="btn">
-          Login
-        </Link>
-        <h1>{user.email}</h1>
-        {/* <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-          <div className="w-10 rounded-full">
-            <img src="https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?cs=srgb&dl=pexels-italo-melo-2379005.jpg&fm=jpg" />
+        {user && (
+          <div className="flex gap-14">
+            <button onClick={() => handleLogout()} className="btn btn-success">
+              logout
+            </button>
+            <label className="btn btn-ghost btn-circle avatar">
+              <div className="w-20 rounded-full">
+                <img src="https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?cs=srgb&dl=pexels-italo-melo-2379005.jpg&fm=jpg" />
+              </div>
+            </label>
           </div>
-        </label> */}
+        )}
       </div>
     </div>
   );

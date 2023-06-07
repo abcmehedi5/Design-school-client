@@ -2,9 +2,10 @@ import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 import { AuthContext } from "../../Providers/AuthProvider";
+import useToast from "../../Hooks/useToast";
 
 const Register = () => {
-  const { createUserEmail } = useContext(AuthContext);
+  const { createUserEmail, updateUserProfile } = useContext(AuthContext);
   const {
     register,
     handleSubmit,
@@ -15,12 +16,29 @@ const Register = () => {
     const email = data.email;
     const password = data.password;
     const name = data.name;
+    const photoURL = {};
     createUserEmail(email, password)
       .then((result) => {
+        const user = result.user;
+        updateProfile(user, name, photoURL);
         console.log(result);
       })
       .catch((error) => {
         console.log(error.message);
+      });
+  };
+
+  const updateProfile = (user, name, photoURL) => {
+    updateUserProfile(user, {
+      displayName: name,
+      photoURL: photoURL,
+    })
+      .then(() => {
+        // Profile updated!
+        // ...
+      })
+      .catch((error) => {
+        useToast("error", error.message);
       });
   };
   return (

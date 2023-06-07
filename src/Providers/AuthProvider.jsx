@@ -19,11 +19,13 @@ const AuthProvider = ({ children }) => {
 
   // create user email and password
   const createUserEmail = (email, password) => {
+    setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
   //   login user email and password
   const loginUser = (email, password) => {
+    setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
   // google login
@@ -48,8 +50,8 @@ const AuthProvider = ({ children }) => {
     return signOut(auth);
   };
 
-  const updateUserProfile = (currentUser, name) => {
-    return updateProfile(currentUser, name);
+  const updateUserProfile = (currentUser, name, photoURL) => {
+    return updateProfile(currentUser, name, photoURL);
   };
   const authInfo = {
     user,
