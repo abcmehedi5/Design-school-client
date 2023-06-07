@@ -16,7 +16,8 @@ const Register = () => {
     const email = data.email;
     const password = data.password;
     const name = data.name;
-    const photoURL = {};
+    const photoURL =
+      "https://img.freepik.com/free-photo/man-wearing-t-shirt-gesturing_23-2149393645.jpg";
     createUserEmail(email, password)
       .then((result) => {
         const user = result.user;
@@ -33,10 +34,7 @@ const Register = () => {
       displayName: name,
       photoURL: photoURL,
     })
-      .then(() => {
-        // Profile updated!
-        // ...
-      })
+      .then((result) => {})
       .catch((error) => {
         useToast("error", error.message);
       });

@@ -90,7 +90,7 @@ const Navbar = () => {
             </button>
             <label className="btn btn-ghost btn-circle avatar">
               <div className="w-20 rounded-full">
-                <img src="https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?cs=srgb&dl=pexels-italo-melo-2379005.jpg&fm=jpg" />
+                <img src={user?.photoURL} />
               </div>
             </label>
           </div>
