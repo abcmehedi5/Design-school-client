@@ -8,6 +8,8 @@ import MyEnrolledClasses from "../Pages/Dashboard/MyEnrolledClasses/MyEnrolledCl
 import MySelectedClass from "../Pages/Dashboard/MySelectedClass/MySelectedClass";
 import AdminHome from "../Pages/Dashboard/AdminHome/AdminHome";
 import AddClass from "../Pages/Dashboard/AddClass/AddClass";
+import Login from "../Pages/Login/Login";
+import Register from "../Pages/Register/Register";
 
 const router = createBrowserRouter([
   {
@@ -17,6 +19,14 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
+      },
+      {
+        path: "login",
+        element:<Login></Login>,
+      },
+      {
+        path: "register",
+        element:<Register></Register>,
       },
       {
         path: "instructors",
