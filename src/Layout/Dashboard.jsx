@@ -39,6 +39,11 @@ const Dashboard = () => {
               My Selected Classes
             </NavLink>
           </li>
+          <li>
+            <NavLink to={"/dashboard/Add-Class"}>
+            Add a Class
+            </NavLink>
+          </li>
 
           <li></li>
         </ul>
