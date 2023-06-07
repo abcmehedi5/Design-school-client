@@ -22,10 +22,10 @@ const Register = () => {
       .then((result) => {
         const user = result.user;
         updateProfile(user, name, photoURL);
-        console.log(result);
+        useToast("success", "account create successfull");
       })
       .catch((error) => {
-        console.log(error.message);
+        useToast("error", error.message);
       });
   };
 
