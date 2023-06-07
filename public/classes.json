@@ -1,0 +1,52 @@
+[
+    {
+      "_id": 1,
+      "image":"https://99designs-blog.imgix.net/blog/wp-content/uploads/2022/04/106032482.jpeg?auto=format&q=60&w=1280&h=960&fit=crop&crop=faces",
+      "name": "Graphic Design Basics",
+      "instructor": "John Smith",
+      "availableSeats": 15,
+      "price": 99.99
+    },
+    {
+      "_id": 2,
+      "image":"https://99designs-blog.imgix.net/blog/wp-content/uploads/2022/04/106032482.jpeg?auto=format&q=60&w=1280&h=960&fit=crop&crop=faces",
+      "name": "Advanced Photoshop Techniques",
+      "instructor": "Jane Doe",
+      "availableSeats": 10,
+      "price": 149.99
+    },
+    {
+      "_id": 3,
+      "image":"https://visme.co/blog/wp-content/uploads/2021/10/what-is-graphic-design-header-1200.png",
+      "name": "Illustration Fundamentals",
+      "instructor": "Michael Johnson",
+      "availableSeats": 8,
+      "price": 129.99
+    },
+    {
+      "_id": 6,
+      "image":"https://visme.co/blog/wp-content/uploads/2021/10/what-is-graphic-design-header-1200.png",
+      "name": "Digital Painting Techniques",
+      "instructor": "Sarah Anderson",
+      "availableSeats": 5,
+      "price": 199.99
+    },
+    {
+      "_id": 4,
+      "image":"https://99designs-blog.imgix.net/blog/wp-content/uploads/2022/04/106032482.jpeg?auto=format&q=60&w=1280&h=960&fit=crop&crop=faces",
+      "name": "Motion Graphics Masterclass",
+      "instructor": "Emily Thompson",
+      "availableSeats": 12,
+      "price": 179.99
+    },
+    {
+      "_id": 5,
+      "image":"https://99designs-blog.imgix.net/blog/wp-content/uploads/2022/04/106032482.jpeg?auto=format&q=60&w=1280&h=960&fit=crop&crop=faces",
+      "name": "Web Design Workshop",
+      "instructor": "David Wilson",
+      "availableSeats": 20,
+      "price": 89.99
+    }
+
+  ]
+  
