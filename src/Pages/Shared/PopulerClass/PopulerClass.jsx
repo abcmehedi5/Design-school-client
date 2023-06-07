@@ -12,7 +12,10 @@ const PopulerClass = () => {
   }, []);
   return (
     <div>
-      <div className="flex gap-5 flex-wrap justify-center mt-10">
+      <h1 className="text-3xl mt-10 text-center mb-10 uppercase font-bold">
+        Popular Classes
+      </h1>
+      <div className="flex gap-5 flex-wrap justify-center ">
         {classes.map((cls) => (
           <PopulerClassCard key={cls._id} cls={cls}></PopulerClassCard>
         ))}
