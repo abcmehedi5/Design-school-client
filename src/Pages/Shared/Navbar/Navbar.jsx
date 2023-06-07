@@ -59,7 +59,7 @@ const Navbar = () => {
             <Link to="classes">Classes</Link>
           </li>
           <li>
-            <Link to="/">Dashboard</Link>
+            <Link to="/dashboard/admin-home">Dashboard</Link>
           </li>
         </ul>
       </div>
