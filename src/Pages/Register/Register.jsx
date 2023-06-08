@@ -43,6 +43,7 @@ const Register = () => {
                 name: data.name,
                 email: data.email,
                 phoneNumber: data.phoneNumber,
+                image:photoURL,
                 status: "user",
               };
               axiosSecure.post("/users", saveUser).then((result) => {
