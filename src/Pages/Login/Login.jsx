@@ -1,12 +1,16 @@
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 import useToast from "../../Hooks/useToast";
 import { AuthContext } from "../../Providers/AuthProvider";
 import Spinner from "../../Components/Loading/Loading";
 const Login = () => {
   const { loginUser, loading } = useContext(AuthContext);
+
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state?.pathname || "/";
   const {
     register,
     handleSubmit,
@@ -18,6 +22,7 @@ const Login = () => {
     const password = data.password;
     loginUser(email, password)
       .then((result) => {
+        navigate(from, { replace: true });
         useToast("success", "User login successfull");
       })
       .catch((error) => {
@@ -73,9 +78,7 @@ const Login = () => {
             type="submit"
             className="w-full bg-blue-500 text-white rounded-lg p-4 hover:bg-blue-600 transition-colors duration-300"
           >
-            <span>
-              {loading && <Spinner></Spinner>} Login
-            </span>
+            <span>{loading && <Spinner></Spinner>} Login</span>
           </button>
         </form>
         <div className="flex  justify-between">

@@ -11,6 +11,7 @@ import AddClass from "../Pages/Dashboard/AddClass/AddClass";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import ManageUsers from "../Pages/Dashboard/ManageUsers/ManageUsers";
+import PrivateRouter from "./PrivateRouter";
 
 const router = createBrowserRouter([
   {
@@ -23,11 +24,11 @@ const router = createBrowserRouter([
       },
       {
         path: "login",
-        element:<Login></Login>,
+        element: <Login></Login>,
       },
       {
         path: "register",
-        element:<Register></Register>,
+        element: <Register></Register>,
       },
       {
         path: "instructors",
@@ -41,12 +42,15 @@ const router = createBrowserRouter([
   },
   {
     path: "dashboard",
-    element: <Dashboard></Dashboard>,
+    element: (
+      <PrivateRouter>
+        <Dashboard></Dashboard>
+      </PrivateRouter>
+    ),
     children: [
-
       {
         path: "admin-home",
-        element:<AdminHome></AdminHome>,
+        element: <AdminHome></AdminHome>,
       },
       {
         path: "my-enrolled-classes",
