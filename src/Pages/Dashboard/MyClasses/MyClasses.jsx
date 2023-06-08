@@ -17,6 +17,10 @@ const MyClasses = () => {
       return res.data;
     },
   });
+
+  const handleEdit = (id) => {
+    console.log(id);
+  };
   return (
     <div>
       <h1 className="uppercase text-2xl text-center mt-5 font-bold">
@@ -55,7 +59,12 @@ const MyClasses = () => {
                   <button className="btn btn-sm px-6  bg-red-400 text-white">
                     <MdDelete size={20} color="white" />
                   </button>
-                  <button className="btn btn-sm px-6  bg-green-600 text-white">
+                  <button
+                    className="btn btn-sm px-6  bg-green-600 text-white"
+                    onClick={() => {
+                      window.my_modal_1.showModal(), handleEdit(cls?._id);
+                    }}
+                  >
                     <MdEdit size={20} color="white" />
                   </button>
                 </td>
@@ -66,6 +75,22 @@ const MyClasses = () => {
           <span className="loading loading-spinner loading-lg "></span>
         )}
       </table>
+
+      {/* modal start */}
+      <dialog id="my_modal_1" className="modal">
+        <form method="dialog" className="modal-box">
+          <h3 className="font-bold text-lg">Hello!</h3>
+          <p className="py-4">
+            Press ESC key or click the button below to close
+          </p>
+          <div className="modal-action">
+            {/* if there is a button in form, it will close the modal */}
+            <button className="btn">Close</button>
+          </div>
+        </form>
+      </dialog>
+
+      {/* modal end */}
     </div>
   );
 };
