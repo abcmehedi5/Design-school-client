@@ -1,8 +1,36 @@
 import React from "react";
 import useCart from "../../../Hooks/useCart";
+import { AiFillDelete } from "react-icons/ai";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import useToast from "../../../Hooks/useToast";
+import Swal from "sweetalert2";
 
 const MySelectedClass = () => {
   const [cart, refetch, isLoading] = useCart();
+  const [axiosSecure] = useAxiosSecure();
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure
+          .delete(`/carts/${id}`)
+          .then((result) => {
+            refetch()
+            Swal.fire("Deleted!", "Your file has been deleted.", "success");
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+    });
+  };
   return (
     <div>
       <h1>my selected class </h1>
@@ -42,7 +70,12 @@ const MySelectedClass = () => {
                   <td>{crt.instructorEmail}</td>
                   <td>{crt.price}</td>
                   <td>
-                    <button>Delete</button>
+                    <button
+                      onClick={() => handleDelete(crt._id)}
+                      className="btn btn-success"
+                    >
+                      <AiFillDelete size={20} />
+                    </button>
                   </td>
                 </tr>
               ))}

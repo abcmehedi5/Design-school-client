@@ -1,11 +1,20 @@
 import React from "react";
+import useAdmin from "../../Hooks/useAdmin";
+import useInstractor from "../../Hooks/useInstractor";
 
-const AllClassesDetails = ({ cls ,handleSelect }) => {
-  const { image, name, instructorName, availableSeats, price ,_id } = cls;
+const AllClassesDetails = ({ cls, handleSelect }) => {
+  const { image, name, instructorName, availableSeats, price, _id } = cls;
+  const [isAdmin] = useAdmin();
+  const [isInstractor] = useInstractor();
+  const isButtonDisabled = availableSeats == 0 || isAdmin || isInstractor;
   return (
-    <div className="card w-80 bg-base-300 shadow-xl">
+    <div
+      className={` ${
+        availableSeats == 0 && "bg-red-300 text-white"
+      } card w-80 bg-base-300 shadow-xl p-3`}
+    >
       <figure>
-        <img className="h-40 w-full" src={image} alt="classes" />
+        <img className="h-40 w-full rounded-lg" src={image} alt="classes" />
       </figure>
       <div className="card-body">
         <h2 className="card-title text-center">{name}</h2>
@@ -14,7 +23,11 @@ const AllClassesDetails = ({ cls ,handleSelect }) => {
           <div className="badge badge-outline">{availableSeats}</div>
           <div className="badge badge-outline">{instructorName}</div>
         </div>
-        <button onClick={() =>handleSelect(cls)} className="btn bg-red-500 text-white hover:bg-orange-500 ">
+        <button
+          disabled={isButtonDisabled}
+          onClick={() => handleSelect(cls)}
+          className="btn bg-orange-600 text-white hover:bg-orange-500 "
+        >
           Select
         </button>
       </div>
