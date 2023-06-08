@@ -3,10 +3,12 @@ import { useForm } from "react-hook-form";
 import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 import { AuthContext } from "../../Providers/AuthProvider";
 import useToast from "../../Hooks/useToast";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const Register = () => {
   const { createUserEmail, updateUserProfile } = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
+  const [axiosSecure] = useAxiosSecure();
   const {
     register,
     handleSubmit,
@@ -35,8 +37,19 @@ const Register = () => {
             .then((result) => {
               const user = result.user;
               updateProfile(user, name, photoURL);
-              useToast("success", "account create successfull");
-              setLoading(false);
+
+              // send data mongodb data base start
+              const saveUser = {
+                name: data.name,
+                email: data.email,
+                phoneNumber: data.phoneNumber,
+                status: "user",
+              };
+              axiosSecure.post("/users", saveUser).then((result) => {
+                useToast("success", "account create successfull");
+                setLoading(false);
+              });
+              // send data mongodb data base start
             })
             .catch((error) => {
               useToast("error", error.message);
@@ -176,7 +189,10 @@ const Register = () => {
             type="submit"
             className="w-full flex items-center gap-2 justify-center bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition-colors duration-300"
           >
-             {loading && <span className="loading loading-spinner loading-md"></span>} Register
+            {loading && (
+              <span className="loading loading-spinner loading-md"></span>
+            )}{" "}
+            Register
           </button>
         </form>
         <SocialLogin></SocialLogin>

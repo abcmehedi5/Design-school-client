@@ -40,9 +40,10 @@ const Dashboard = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to={"/dashboard/Add-Class"}>
-            Add a Class
-            </NavLink>
+            <NavLink to={"/dashboard/Add-Class"}>Add a Class</NavLink>
+          </li>
+          <li>
+            <NavLink to={"/dashboard/manage-user"}>Manage Users</NavLink>
           </li>
 
           <li></li>
