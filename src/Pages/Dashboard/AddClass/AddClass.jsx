@@ -1,15 +1,48 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
+import { AuthContext } from "../../../Providers/AuthProvider";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import useToast from "../../../Hooks/useToast";
 
 const AddClass = () => {
+  const { user } = useContext(AuthContext);
+  const [axiosSecure] = useAxiosSecure();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-    data.status = "pending";
-    console.log(data);
+    // setLoading(true);
+    const formData = new FormData();
+    formData.append("image", data.image[0]);
+    fetch(
+      `https://api.imgbb.com/1/upload?key=132b873aeba0a9d4de363955fe04a522`,
+      {
+        method: "POST",
+        body: formData,
+      }
+    )
+      .then((res) => res.json())
+      .then((result) => {
+        if (result.success) {
+          const image = result.data.display_url;
+          data.enroll = 0;
+          data.status = "pending";
+          data.image = image
+          axiosSecure
+            .post("/addClass", data)
+            .then((result) => {
+              useToast("success", result.data.message);
+            })
+            .catch((error) => {
+              useToast("error", error);
+            });
+        }
+      })
+      .catch((error) => {
+        useToast("error", error);
+      });
   };
 
   return (
@@ -28,7 +61,7 @@ const AddClass = () => {
           <input
             type="text"
             placeholder="Instructor name"
-            defaultValue="Mehedi hassan"
+            defaultValue={user?.displayName}
             readOnly
             className="input input-bordered input-md w-full mt-5"
             {...register("instructorName")}
@@ -37,7 +70,7 @@ const AddClass = () => {
           <input
             type="email"
             placeholder="Instructor email "
-            defaultValue="mehedi@gmail.com"
+            defaultValue={user?.email}
             readOnly
             className="input input-bordered input-md w-full mt-5"
             {...register("instructorEmail")}
@@ -61,7 +94,11 @@ const AddClass = () => {
             className="file-input file-input-bordered file-input-md w-full mt-5"
           />
 
-          <input className="btn bg-red-700 text-white mt-5 text-center w-full" type="submit" value="Add class" />
+          <input
+            className="btn bg-red-700 text-white mt-5 text-center w-full"
+            type="submit"
+            value="Add class"
+          />
         </form>
       </div>
     </div>
