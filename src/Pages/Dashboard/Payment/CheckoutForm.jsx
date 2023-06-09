@@ -6,6 +6,7 @@ import { AuthContext } from "../../../Providers/AuthProvider";
 import useToast from "../../../Hooks/useToast";
 import Swal from "sweetalert2";
 const CheckoutForm = ({ price, cart }) => {
+  console.log("my selected card",cart);
   const stripe = useStripe();
   const elements = useElements();
   const { user } = useContext(AuthContext);
@@ -76,7 +77,8 @@ const CheckoutForm = ({ price, cart }) => {
         price,
         date: new Date(),
         quantity: cart.length,
-        classesId: cart.map((item) => item._id),
+        classesId: cart.map((item) => item.classId),
+        cartId: cart.map((item) => item._id),
         status: "service pending",
         instructorEmail: cart.map((item) => item.instructorEmail),
         classesName: cart.map((item) => item.name),

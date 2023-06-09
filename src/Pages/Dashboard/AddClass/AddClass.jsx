@@ -79,7 +79,7 @@ const AddClass = () => {
             type="number"
             placeholder="Available seats"
             className="input input-bordered input-md w-full mt-5"
-            {...register("availableSeats", { required: true })}
+            {...register("availableSeats", { required: true ,setValueAs:(value) => parseInt(value) })}
           />
           <input
             type="number"
