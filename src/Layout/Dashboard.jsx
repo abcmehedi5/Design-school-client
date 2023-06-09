@@ -1,5 +1,9 @@
 import React from "react";
-import { FaHome, FaUsers } from "react-icons/fa";
+import { FaCommentDollar, FaHome, FaUsers ,FaPeopleArrows } from "react-icons/fa";
+import { BiSelectMultiple, BiAddToQueue,BiMessageAlt } from "react-icons/bi";
+import { RiAccountPinBoxFill} from "react-icons/ri";
+import { SiGoogleclassroom } from "react-icons/si";
+import { MdManageHistory } from "react-icons/md";
 import { NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../Hooks/useAdmin";
 import useInstractor from "../Hooks/useInstractor";
@@ -32,7 +36,7 @@ const Dashboard = () => {
               </li>
               <li>
                 <NavLink to={"/dashboard/manage-classes"}>
-                  <FaUsers size={20} /> Manage classes
+                  <MdManageHistory size={20} /> Manage classes
                 </NavLink>
               </li>
             </>
@@ -43,16 +47,16 @@ const Dashboard = () => {
           {isInstractor && (
             <>
               <li>
-                <NavLink to={"/dashboard/my-classes"}>My Classes</NavLink>
+                <NavLink to={"/dashboard/my-classes"}> < RiAccountPinBoxFill size={20} />My Classes</NavLink>
               </li>
               <li>
-                <NavLink to={"/dashboard/total-enroll-student"}>Total Enrolled Students</NavLink>
+                <NavLink to={"/dashboard/total-enroll-student"}> <FaPeopleArrows size={20} />Total Enrolled Students</NavLink>
               </li>
               <li>
-                <NavLink to={"/dashboard/feedback"}>Feedback</NavLink>
+                <NavLink to={"/dashboard/feedback"}> <BiMessageAlt size={20} />Feedback</NavLink>
               </li>
               <li>
-                <NavLink to={"/dashboard/Add-Class"}>Add a Class</NavLink>
+                <NavLink to={"/dashboard/Add-Class"}> <BiAddToQueue size={20}/>Add a Class</NavLink>
               </li>
             </>
           )}
@@ -64,16 +68,16 @@ const Dashboard = () => {
           </li>
           <li>
             <NavLink to={"/dashboard/my-enrolled-classes"}>
-              My Enrolled Class
+             <SiGoogleclassroom size={20}/> My Enrolled Class
             </NavLink>
           </li>
           <li>
             <NavLink to={"/dashboard/my-selected-classes"}>
-              My Selected Classes
+             <BiSelectMultiple size={20}/> My Selected Classes
             </NavLink>
           </li>
           <li>
-            <NavLink to={"/dashboard/payment-history"}>Payment history</NavLink>
+            <NavLink to={"/dashboard/payment-history"}> <FaCommentDollar size={20}/>Payment history</NavLink>
           </li>
         </ul>
       </div>
