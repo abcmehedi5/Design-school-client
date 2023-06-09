@@ -4,9 +4,11 @@ import { AiFillDelete } from "react-icons/ai";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import useToast from "../../../Hooks/useToast";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const MySelectedClass = () => {
   const [cart, refetch, isLoading] = useCart();
+  const total = cart.reduce((sum, item) => parseFloat(item.price) + sum, 0);
   const [axiosSecure] = useAxiosSecure();
   const handleDelete = (id) => {
     Swal.fire({
@@ -22,7 +24,7 @@ const MySelectedClass = () => {
         axiosSecure
           .delete(`/carts/${id}`)
           .then((result) => {
-            refetch()
+            refetch();
             Swal.fire("Deleted!", "Your file has been deleted.", "success");
           })
           .catch((error) => {
@@ -33,14 +35,36 @@ const MySelectedClass = () => {
   };
   return (
     <div>
-      <h1>my selected class </h1>
-
+      <h1 className="uppercase text-2xl text-center mt-5 font-bold">
+        my selected classes 
+      </h1>
       {isLoading ? (
-        <div className="flex justify-center ">
+        <div>
           <span className="loading loading-spinner loading-lg"></span>
         </div>
       ) : (
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto flex gap-4 p-4">
+          <div className="w-2/6  border mx-auto p-4 bg-white shadow-lg">
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-xl font-bold">Selected Cart</h2>
+              <span className="text-gray-500">({cart.length} items)</span>
+            </div>
+            <ul className="space-y-4">
+              {/* Render your cart items dynamically */}
+              {/* Example item */}
+              <li className="flex items-center space-x-4">
+                <div>
+                  
+                  <p className="text-gray-500"> Total Amount: $ {total}</p>
+                </div>
+              </li>
+            </ul>
+            <Link to='/dashboard/payment'>
+              <button className="w-full px-4 py-2 mt-4 text-white bg-blue-500 rounded">
+                Checkout
+              </button>
+            </Link>
+          </div>
           <table className="table">
             {/* head */}
             <thead className="bg-orange-400 text-[15px]">
