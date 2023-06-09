@@ -1,19 +1,7 @@
 import React from "react";
-import useAxiosSecure from "../../Hooks/useAxiosSecure";
-import { useQuery } from "react-query";
-
 const AllInstructorDetails = ({ instractor }) => {
   const { email, image, name } = instractor;
-  const [ axiosSecure] = useAxiosSecure()
-  const {data: classes =[] } = useQuery({
-    queryKey:"classes",
-    queryFn: async () =>{
-        const res = await axiosSecure.get(`/classes?email=${email}`);
-        return res.data;
-    }
-  })
 
-  console.log(classes);
   return (
     <div className="card w-60 overflow-hidden bg-base-100 shadow-xl border">
       <figure className="px-10 pt-10">
@@ -21,8 +9,7 @@ const AllInstructorDetails = ({ instractor }) => {
       </figure>
       <div className="card-body items-center text-center">
         <h3>{name}</h3>
-        <h3>{email}</h3>
-        <h3>{classes.length}</h3>
+        <h3 className="text-slate-400 text-sm">{email}</h3>
       </div>
     </div>
   );

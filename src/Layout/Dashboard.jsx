@@ -46,6 +46,12 @@ const Dashboard = () => {
                 <NavLink to={"/dashboard/my-classes"}>My Classes</NavLink>
               </li>
               <li>
+                <NavLink to={"/dashboard/total-enroll-student"}>Total Enrolled Students</NavLink>
+              </li>
+              <li>
+                <NavLink to={"/dashboard/feedback"}>Feedback</NavLink>
+              </li>
+              <li>
                 <NavLink to={"/dashboard/Add-Class"}>Add a Class</NavLink>
               </li>
             </>

@@ -14,6 +14,8 @@ import ManageUsers from "../Pages/Dashboard/ManageUsers/ManageUsers";
 import PrivateRouter from "./PrivateRouter";
 import MyClasses from "../Pages/Dashboard/MyClasses/MyClasses";
 import MangeClasses from "../Pages/Dashboard/MangeClasses/MangeClasses";
+import TotalEnrollClasses from "../Pages/Dashboard/TotalEnrollClasses/TotalEnrollClasses";
+import Feedback from "../Pages/Dashboard/Feedback/Feedback";
 
 const router = createBrowserRouter([
   {
@@ -77,6 +79,14 @@ const router = createBrowserRouter([
       {
         path: "manage-classes",
         element: <MangeClasses></MangeClasses>,
+      },
+      {
+        path: "total-enroll-student",
+        element: <TotalEnrollClasses></TotalEnrollClasses>,
+      },
+      {
+        path: "feedback",
+        element: <Feedback></Feedback>,
       },
     ],
   },
