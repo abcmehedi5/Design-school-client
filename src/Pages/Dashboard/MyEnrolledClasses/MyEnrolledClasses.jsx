@@ -21,8 +21,7 @@ const MyEnrolledClasses = () => {
       ) : (
         <>
           {enrolledClass.length <= 0 ? (
-            <h3 className="min-h-screen hero text-5xl">
-              {" "}
+            <h3 className="min-h-screen hero text-4xl">
               Sorry !! You are not enrolled in any class
             </h3>
           ) : (
