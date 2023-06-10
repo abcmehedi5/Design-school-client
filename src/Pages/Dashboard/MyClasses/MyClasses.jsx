@@ -48,8 +48,9 @@ const MyClasses = () => {
                 <td>{cls?.enroll}</td>
                 <td
                   className={` ${
-                    (cls.status == "pending" && "text-red-600 font-bold") ||
-                    (cls?.status == "approved" && "text-green-700 font-bold")
+                    (cls.status == "pending" && "text-yellow-600 font-bold") ||
+                    (cls?.status == "approved" && "text-green-700 font-bold") ||
+                    (cls?.status == "deny" && "text-red-600 font-bold")
                   }`}
                 >
                   {cls.status}

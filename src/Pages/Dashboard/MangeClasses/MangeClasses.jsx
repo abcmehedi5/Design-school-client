@@ -118,8 +118,9 @@ const MangeClasses = () => {
                 <td>{cls?.enroll}</td>
                 <select
                   className={` ${
-                    (cls.status == "pending" && "bg-red-300") ||
-                    (cls?.status == "approved" && "bg-green-300")
+                    (cls.status == "pending" && "bg-yellow-200") ||
+                    (cls?.status == "approved" && "bg-green-300") ||
+                    (cls?.status == "deny" && "bg-red-300")
                   } select select-bordered  mt-1`}
                   onChange={(event) => handleRole(cls?._id, event)}
                 >
@@ -128,6 +129,7 @@ const MangeClasses = () => {
                   </option>
                   <option value="pending">Pending</option>
                   <option value="approved">Approved</option>
+                  <option value="deny">Deny</option>
                 </select>
                 <td>
                   <button
@@ -176,7 +178,10 @@ const MangeClasses = () => {
                 value="send"
               /> */}
 
-              <button onClick={handleSend} className="btn absolute bottom-5 left-5">
+              <button
+                onClick={handleSend}
+                className="btn absolute bottom-5 left-5"
+              >
                 {loading && (
                   <span className="loading loading-spinner loading-md"></span>
                 )}
