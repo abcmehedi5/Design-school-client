@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import SocialLogin from "../Shared/SocialLogin/SocialLogin";
@@ -6,8 +6,8 @@ import useToast from "../../Hooks/useToast";
 import { AuthContext } from "../../Providers/AuthProvider";
 import Spinner from "../../Components/Loading/Loading";
 const Login = () => {
-  const { loginUser, loading } = useContext(AuthContext);
-
+  const { loginUser } = useContext(AuthContext);
+  const [loading, setLoading] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state?.pathname || "/";
@@ -18,14 +18,17 @@ const Login = () => {
   } = useForm();
 
   const onSubmit = (data) => {
+    setLoading(true);
     const email = data.email;
     const password = data.password;
     loginUser(email, password)
       .then((result) => {
         navigate(from, { replace: true });
+        setLoading(false);
         useToast("success", "User login successfull");
       })
       .catch((error) => {
+        setLoading(false);
         useToast("error", error.message);
       });
   };
@@ -76,9 +79,12 @@ const Login = () => {
           </div>
           <button
             type="submit"
-            className="w-full bg-blue-500 text-white rounded-lg p-4 hover:bg-blue-600 transition-colors duration-300"
+            className="w-full bg-blue-500 text-white rounded-lg p-2 flex justify-center gap-3 hover:bg-blue-600 transition-colors duration-300"
           >
-            <span>{loading && <Spinner></Spinner>} Login</span>
+            {loading && (
+              <span className="loading loading-spinner loading-md"></span>
+            )}
+            Login
           </button>
         </form>
         <div className="flex  justify-between">
