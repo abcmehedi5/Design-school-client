@@ -1,10 +1,22 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import PopulerClassCard from "./PopulerClassCard";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import { useQuery } from "react-query";
 
 const PopulerClass = () => {
-  const [classes, setClasses] = useState([]);
-  console.log(classes);
+  // const [classes, setClasses] = useState([]);
+  // console.log(classes);
+
+  const [axiosSecure] = useAxiosSecure()
+  const {data:classes =[], isLoading} = useQuery({
+    queryKey:["classes"],
+    queryFn: async () =>{
+      const res = await  axiosSecure.get('/mostEnrolledApprovedClasses' )
+      return res.data
+    }
+
+  })
   useEffect(() => {
     axios.get("/classes.json").then((data) => {
       setClasses(data.data);
