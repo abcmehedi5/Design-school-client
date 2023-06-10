@@ -4,7 +4,7 @@ const MyEnrolledDetails = ({ myclasses }) => {
   const { name, image, instructorEmail, instructorName } = myclasses;
   console.log(myclasses);
   return (
-    <div className="shadow-md rounded-lg p-4 border mt-3 m-3 bg-slate-100 flex  items-center gap-4">
+    <div className="shadow-md rounded-lg p-4 border mt-3 bg-slate-100 flex  items-center gap-4">
       <img
         src={image}
         alt="Card Image"

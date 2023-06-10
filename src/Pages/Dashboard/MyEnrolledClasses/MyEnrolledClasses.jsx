@@ -30,7 +30,7 @@ const MyEnrolledClasses = () => {
                 My enrolled Class ({enrolledClass.length})
               </h1>
 
-              <div className="grid lg:grid-cols-2 md: grid-cols-1">
+              <div className="grid lg:grid-cols-2 md: grid-cols-1 gap-3  m-3">
                 {enrolledClass.map((myclasses) => (
                   <MyEnrolledDetails
                     myclasses={myclasses}

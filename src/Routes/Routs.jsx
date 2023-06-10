@@ -17,6 +17,7 @@ import MangeClasses from "../Pages/Dashboard/MangeClasses/MangeClasses";
 import TotalEnrollClasses from "../Pages/Dashboard/TotalEnrollClasses/TotalEnrollClasses";
 import Feedback from "../Pages/Dashboard/Feedback/Feedback";
 import Payment from "../Pages/Dashboard/Payment/Payment";
+import PaymentHistory from "../Pages/Dashboard/PaymentHistory/PaymentHistory";
 
 const router = createBrowserRouter([
   {
@@ -92,6 +93,10 @@ const router = createBrowserRouter([
       {
         path: "payment",
         element: <Payment></Payment>,
+      },
+      {
+        path: "payment-history",
+        element: <PaymentHistory></PaymentHistory>,
       },
     ],
   },
