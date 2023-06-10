@@ -11,7 +11,7 @@ const AllClassesDetails = ({ cls, handleSelect }) => {
     <div
       className={` ${
         availableSeats == 0 && "bg-red-300 text-white"
-      } card w-80 bg-base-300 shadow-xl p-3`}
+      } card w-80 bg-base-100 border  shadow-xl p-3`}
     >
       <figure>
         <img className="h-40 w-full rounded-lg" src={image} alt="classes" />
