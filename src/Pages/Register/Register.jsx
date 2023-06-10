@@ -16,6 +16,31 @@ const Register = () => {
   } = useForm();
 
   const onSubmit = (data) => {
+    // validate------------------
+    // name validate
+    if (!/(?=.*[a-z])/.test(data.name)) {
+      useToast("error", "Your name not valid");
+      setLoading(false);
+      return;
+    }
+
+    // password validate
+    if (data.password !== data.confirmPassword) {
+      useToast("error", "Your password did not match");
+      setLoading(false);
+      return;
+    } else if (data.password.length < 6) {
+      useToast("error", "password must be 6 characters or longer");
+      setLoading(false);
+      return;
+    }
+
+    if (!/(?=.*[A-Z])(?=.*[^A-Za-z0-9])/.test(data.password)) {
+      useToast("error", "don't have a capital letter and special character ");
+      setLoading(false);
+      return;
+    }
+
     setLoading(true);
     const formData = new FormData();
     formData.append("image", data.image[0]);
@@ -43,7 +68,7 @@ const Register = () => {
                 name: data.name,
                 email: data.email,
                 phoneNumber: data.phoneNumber,
-                image:photoURL,
+                image: photoURL,
                 status: "user",
               };
               axiosSecure.post("/users", saveUser).then((result) => {
