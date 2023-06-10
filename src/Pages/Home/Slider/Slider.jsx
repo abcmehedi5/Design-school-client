@@ -17,9 +17,9 @@ const Slider = () => {
     <div className="mt-20 bg-slate-100 p-5">
       <Swiper
         spaceBetween={30}
-        centeredSlides={true}
+        // centeredSlides={true}
         autoplay={{
-          delay: 2500,
+          delay: 3500,
           disableOnInteraction: false,
         }}
         pagination={{
@@ -32,55 +32,31 @@ const Slider = () => {
       >
         <SwiperSlide>
           <img
-            src="https://soliloquywp.com/wp-content/uploads/2016/10/multiple-image-slider-wordpress.png"
+            src="https://img.freepik.com/premium-psd/business-youtube-thumbnail-we-banner-template_169307-1175.jpg"
             alt=""
           />
         </SwiperSlide>
         <SwiperSlide>
           <img
-            src="https://soliloquywp.com/wp-content/uploads/2016/10/multiple-image-slider-wordpress.png"
+            src="https://signdesign.com.pk/wp-content/uploads/2016/01/Slider-Size.jpg"
             alt=""
           />
         </SwiperSlide>
         <SwiperSlide>
           <img
-            src="https://soliloquywp.com/wp-content/uploads/2016/10/multiple-image-slider-wordpress.png"
+            src="https://assets-global.website-files.com/614716f50b4f49202fdd0087/6177a573fc8a9f32be284fa6_Photo-58.jpeg"
             alt=""
           />
         </SwiperSlide>
         <SwiperSlide>
           <img
-            src="https://soliloquywp.com/wp-content/uploads/2016/10/multiple-image-slider-wordpress.png"
+           src="https://memoirsinpixels.com/wp-content/uploads/2022/01/slider-pic-3a.jpg"
             alt=""
           />
         </SwiperSlide>
         <SwiperSlide>
           <img
-            src="https://soliloquywp.com/wp-content/uploads/2016/10/multiple-image-slider-wordpress.png"
-            alt=""
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            src="https://soliloquywp.com/wp-content/uploads/2016/10/multiple-image-slider-wordpress.png"
-            alt=""
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            src="https://soliloquywp.com/wp-content/uploads/2016/10/multiple-image-slider-wordpress.png"
-            alt=""
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            src="https://soliloquywp.com/wp-content/uploads/2016/10/multiple-image-slider-wordpress.png"
-            alt=""
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            src="https://soliloquywp.com/wp-content/uploads/2016/10/multiple-image-slider-wordpress.png"
+            src="https://www.webtrainings.in/wp-content/uploads/2022/06/Scope-of-Graphic-Designing-in-India.jpeg"
             alt=""
           />
         </SwiperSlide>
