@@ -18,6 +18,8 @@ import TotalEnrollClasses from "../Pages/Dashboard/TotalEnrollClasses/TotalEnrol
 import Feedback from "../Pages/Dashboard/Feedback/Feedback";
 import Payment from "../Pages/Dashboard/Payment/Payment";
 import PaymentHistory from "../Pages/Dashboard/PaymentHistory/PaymentHistory";
+import UserHome from "../Pages/Dashboard/UserHome/UserHome";
+import InstructorHome from "../Pages/Dashboard/InstructorHome/InstructorHome";
 
 const router = createBrowserRouter([
   {
@@ -57,6 +59,14 @@ const router = createBrowserRouter([
       {
         path: "admin-home",
         element: <AdminHome></AdminHome>,
+      },
+      {
+        path: "user-home",
+        element: <UserHome></UserHome>,
+      },
+      {
+        path: "instructor-home",
+        element: <InstructorHome></InstructorHome>,
       },
       {
         path: "my-enrolled-classes",

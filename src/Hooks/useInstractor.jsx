@@ -8,6 +8,7 @@ const useInstractor = () => {
   const [axiosSecure] = useAxiosSecure();
   const { data: isInstractor, isLoading: isInstractorLoading } = useQuery({
     queryKey: ["isInstractor", user?.email],
+    enabled: !loading,
     queryFn: async () => {
       const res = await axiosSecure.get(`/users/instractor/${user?.email}`);
       return res.data.instractor;

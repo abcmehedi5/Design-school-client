@@ -2,10 +2,13 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../Providers/AuthProvider";
 import useToast from "../../../Hooks/useToast";
+import useInstractor from "../../../Hooks/useInstractor";
+import useAdmin from "../../../Hooks/useAdmin";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
-
+const [isInstractor] =useInstractor()
+const [isAdmin] =useAdmin()
   const handleLogout = () => {
     logOut()
       .then((result) => {
@@ -73,7 +76,7 @@ const Navbar = () => {
           </li>
           {user && (
             <li>
-              <Link to="/dashboard/admin-home">Dashboard</Link>
+              <Link to={`/dashboard/${isAdmin && 'admin-home' || isInstractor && 'instructor-home' || 'user-home'}`}>Dashboard</Link>
             </li>
           )}
           {!user && (
