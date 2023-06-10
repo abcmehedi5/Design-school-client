@@ -1,14 +1,17 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import PopularInstructorsCard from "./PopularInstructorsCard";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import { useQuery } from "react-query";
 
 const PopularInstructors = () => {
-  const [instructors, setInstructors] = useState([]);
-  useEffect(() => {
-    axios.get("/instructor.json").then((data) => {
-      setInstructors(data.data);
-    });
-  }, []);
+  const [axiosSecure] = useAxiosSecure();
+  const { data: instructors = [], isLoading } = useQuery({
+    queryKey: "instractor",
+    queryFn: async () => {
+      const res = await axiosSecure.get("/allInstractor");
+      return res.data;
+    },
+  });
   return (
     <div>
       <h1 className="text-3xl mt-10 text-center mb-10 uppercase font-bold">
@@ -17,7 +20,7 @@ const PopularInstructors = () => {
 
       <div>
         <div className="flex gap-5 flex-wrap justify-center ">
-          {instructors.map((instructor) => (
+          {instructors.slice(0,5).map((instructor) => (
             <PopularInstructorsCard key={instructor._id} instructor={instructor}></PopularInstructorsCard>
           ))}
         </div>
