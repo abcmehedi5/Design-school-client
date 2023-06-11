@@ -20,6 +20,8 @@ import Payment from "../Pages/Dashboard/Payment/Payment";
 import PaymentHistory from "../Pages/Dashboard/PaymentHistory/PaymentHistory";
 import UserHome from "../Pages/Dashboard/UserHome/UserHome";
 import InstructorHome from "../Pages/Dashboard/InstructorHome/InstructorHome";
+import AdminRoute from "./AdminRoute";
+import InstructorRoute from "./InstructorRoute";
 
 const router = createBrowserRouter([
   {
@@ -58,39 +60,77 @@ const router = createBrowserRouter([
     children: [
       {
         path: "admin-home",
-        element: <AdminHome></AdminHome>,
+        element: (
+          <AdminRoute>
+            {" "}
+            <AdminHome></AdminHome>
+          </AdminRoute>
+        ),
       },
       {
         path: "user-home",
-        element: <UserHome></UserHome>,
+        element: (
+          <PrivateRouter>
+            <UserHome></UserHome>
+          </PrivateRouter>
+        ),
       },
       {
         path: "instructor-home",
-        element: <InstructorHome></InstructorHome>,
+        element: (
+          <InstructorRoute>
+            <InstructorHome></InstructorHome>
+          </InstructorRoute>
+        ),
       },
       {
         path: "my-enrolled-classes",
-        element: <MyEnrolledClasses></MyEnrolledClasses>,
+        element: (
+          <PrivateRouter>
+            <MyEnrolledClasses></MyEnrolledClasses>
+          </PrivateRouter>
+        ),
       },
       {
         path: "my-selected-classes",
-        element: <MySelectedClass></MySelectedClass>,
+        element: (
+          <PrivateRouter>
+            {" "}
+            <MySelectedClass></MySelectedClass>
+          </PrivateRouter>
+        ),
       },
       {
         path: "add-class",
-        element: <AddClass></AddClass>,
+        element: (
+          <InstructorRoute>
+            <AddClass></AddClass>
+          </InstructorRoute>
+        ),
       },
       {
         path: "manage-user",
-        element: <ManageUsers></ManageUsers>,
+        element: (
+          <AdminRoute>
+            <ManageUsers></ManageUsers>
+          </AdminRoute>
+        ),
       },
       {
         path: "my-classes",
-        element: <MyClasses></MyClasses>,
+        element: (
+          <InstructorRoute>
+            <MyClasses></MyClasses>
+          </InstructorRoute>
+        ),
       },
       {
         path: "manage-classes",
-        element: <MangeClasses></MangeClasses>,
+        element: (
+          <AdminRoute>
+            <MangeClasses></MangeClasses>
+          </AdminRoute>
+        ),
       },
       {
         path: "total-enroll-student",
@@ -98,11 +138,19 @@ const router = createBrowserRouter([
       },
       {
         path: "feedback",
-        element: <Feedback></Feedback>,
+        element: (
+          <InstructorRoute>
+            <Feedback></Feedback>
+          </InstructorRoute>
+        ),
       },
       {
         path: "payment",
-        element: <Payment></Payment>,
+        element: (
+          <PrivateRouter>
+            <Payment></Payment>
+          </PrivateRouter>
+        ),
       },
       {
         path: "payment-history",

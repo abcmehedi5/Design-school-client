@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../Providers/AuthProvider";
-import useAxiosSecure from "./useAxiosSecure";
 import { useQuery } from "react-query";
+import useAxiosSecure from "./useAxiosSecure";
 
 const useInstractor = () => {
   const { user, loading } = useContext(AuthContext);
