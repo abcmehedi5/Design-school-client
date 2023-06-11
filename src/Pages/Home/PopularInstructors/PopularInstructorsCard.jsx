@@ -1,11 +1,13 @@
 import React from "react";
+import { Slide } from "react-awesome-reveal";
 
 const PopularInstructorsCard = ({instructor}) => {
   console.log(instructor);
     const {name,image,email,status} = instructor;
   return (
     // <div className="card w-96 bg-base-100 shadow-xl">
-    <div className=" card w-80 bg-base-100 border relative shadow-xl p-3">
+ <Slide direction="right">
+     <div className=" card w-80 bg-base-100 border relative shadow-xl p-3">
       <figure>
         <img className=" w-40 h-40 rounded-full" src={image} alt="classes" />
       </figure>
@@ -17,6 +19,7 @@ const PopularInstructorsCard = ({instructor}) => {
         {/* <button className="btn bg-red-500 text-white ">Select</button> */}
       </div>
     </div>
+ </Slide>
   );
 };
 

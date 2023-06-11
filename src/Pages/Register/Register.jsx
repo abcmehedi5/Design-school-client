@@ -4,10 +4,12 @@ import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 import { AuthContext } from "../../Providers/AuthProvider";
 import useToast from "../../Hooks/useToast";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const { createUserEmail, updateUserProfile } = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate()
   const [axiosSecure] = useAxiosSecure();
   const {
     register,
@@ -73,6 +75,7 @@ const Register = () => {
               };
               axiosSecure.post("/users", saveUser).then((result) => {
                 useToast("success", "account create successfull");
+                navigate('/login')
                 setLoading(false);
               });
               // send data mongodb data base start

@@ -3,6 +3,7 @@ import useAdmin from "../../Hooks/useAdmin";
 import useInstractor from "../../Hooks/useInstractor";
 import { TbReportMoney ,TbArmchair} from "react-icons/tb";
 import { BsBookFill,BsCartDashFill} from "react-icons/bs";
+import { Zoom } from "react-awesome-reveal";
 
 const AllClassesDetails = ({ cls, handleSelect }) => {
   const { image, name, instructorName, availableSeats,enroll, price, _id } = cls;
@@ -10,7 +11,8 @@ const AllClassesDetails = ({ cls, handleSelect }) => {
   const [isInstractor] = useInstractor();
   const isButtonDisabled = availableSeats == 0 || isAdmin || isInstractor;
   return (
-    <div
+   <Zoom>
+     <div
       className={` ${
         availableSeats == 0 && "bg-red-100 "
       } card w-80 bg-base-100 border relative shadow-xl p-3`}
@@ -35,6 +37,7 @@ const AllClassesDetails = ({ cls, handleSelect }) => {
         </button>
       </div>
     </div>
+   </Zoom>
   );
 };
 

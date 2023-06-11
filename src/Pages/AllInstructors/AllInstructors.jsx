@@ -15,7 +15,7 @@ const AllInstructors = () => {
   return (
     <div>
       <h1 className="text-3xl mt-5 text-center mb-10 uppercase font-bold">
-        Instractor ({instractors.length})
+        Instractor
       </h1>
 
       <div className="flex justify-center">

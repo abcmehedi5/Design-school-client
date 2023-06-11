@@ -1,4 +1,5 @@
 import React from "react";
+import { Fade,Slide } from "react-awesome-reveal";
 const Cover = () => {
   return (
     <div
@@ -10,7 +11,8 @@ const Cover = () => {
     >
       <div className="hero-overlay bg-opacity-60"></div>
       <div className="hero-content text-center text-neutral-content">
-        <div className="max-w-md">
+     <Slide direction="right">
+     <div className="max-w-md">
           <h1 className="mb-5 text-5xl font-bold"> Summer Camp Design School</h1>
           <p className="mb-5">
             Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
@@ -19,6 +21,7 @@ const Cover = () => {
           </p>
           <button className="btn bg-red-700 border-none text-slate-200">Register for Capm</button>
         </div>
+     </Slide>
       </div>
     </div>
   );
