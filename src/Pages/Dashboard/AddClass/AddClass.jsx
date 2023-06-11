@@ -6,7 +6,7 @@ import useToast from "../../../Hooks/useToast";
 
 const AddClass = () => {
   const { user } = useContext(AuthContext);
-  const { loading, setLoading } = useState(false);
+  const [ loading, setLoading ] = useState(false);
   const [axiosSecure] = useAxiosSecure();
   const {
     register,
