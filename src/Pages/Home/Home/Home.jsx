@@ -4,6 +4,8 @@ import PopulerClass from "../../Shared/PopulerClass/PopulerClass";
 import Slider from "../Slider/Slider";
 import PopularInstructors from "../PopularInstructors/PopularInstructors";
 import OurProtfolio from "../OurProtfolio/OurProtfolio";
+import ContactInfo from "../ContactInfo/ContactInfo";
+import Activities from "../Activities/Activities";
 const Home = () => {
   return (
     // <div className="max-w-[1400px] mx-auto">
@@ -13,6 +15,8 @@ const Home = () => {
       <Slider></Slider>
       <PopularInstructors></PopularInstructors>
       <OurProtfolio></OurProtfolio>
+      <Activities></Activities>
+      <ContactInfo></ContactInfo>
     </div>
   );
 };

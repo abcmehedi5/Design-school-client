@@ -52,6 +52,33 @@ const ManageUsers = () => {
     });
   };
 
+  // mange user delete
+
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure
+          .delete(`/users/${id}`)
+          .then((result) => {
+            refetch();
+            Swal.fire("Deleted!", "Your file has been deleted.", "success");
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+    });
+  };
+
+
   return (
     <div>
       <h1 className="text-lg font-bold text-center mt-10 mb-10">
@@ -95,7 +122,7 @@ const ManageUsers = () => {
                   </select>
 
                   <td>
-                    <button className="btn btn-sm px-6  bg-red-500">
+                    <button onClick={() => handleDelete(user._id)} className="btn btn-sm px-6  bg-red-500">
                       <MdDelete size={20} color="white" />
                     </button>
                   </td>

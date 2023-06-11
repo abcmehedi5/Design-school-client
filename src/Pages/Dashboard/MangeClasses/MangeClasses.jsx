@@ -86,6 +86,30 @@ const MangeClasses = () => {
       });
   };
 
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure
+          .delete(`/classes/${id}`)
+          .then((result) => {
+            refetch();
+            Swal.fire("Deleted!", "Your file has been deleted.", "success");
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+    });
+  };
+
   return (
     <div>
       <h1 className="uppercase text-2xl text-center mt-5 font-bold">
@@ -143,7 +167,7 @@ const MangeClasses = () => {
                   </button>
                 </td>
                 <td>
-                  <button className="btn btn-sm px-6  bg-red-400 text-white">
+                  <button onClick={() => handleDelete(cls._id)} className="btn btn-sm px-6  bg-red-400 text-white">
                     <MdDelete size={20} color="white" />
                   </button>
                 </td>
