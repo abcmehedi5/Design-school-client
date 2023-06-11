@@ -72,12 +72,12 @@ const Dashboard = () => {
                   My Classes
                 </NavLink>
               </li>
-              <li>
+              {/* <li>
                 <NavLink to={"/dashboard/total-enroll-student"}>
                   <FaPeopleArrows size={20} />
                   Total Enrolled Students
                 </NavLink>
-              </li>
+              </li> */}
               <li>
                 <NavLink to={"/dashboard/feedback"}>
                   <BiMessageAlt size={20} />

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../../Providers/AuthProvider";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
@@ -6,6 +6,7 @@ import useToast from "../../../Hooks/useToast";
 
 const AddClass = () => {
   const { user } = useContext(AuthContext);
+  const { loading, setLoading } = useState(false);
   const [axiosSecure] = useAxiosSecure();
   const {
     register,
@@ -13,7 +14,7 @@ const AddClass = () => {
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-    // setLoading(true);
+    setLoading(true);
     const formData = new FormData();
     formData.append("image", data.image[0]);
     fetch(
@@ -29,19 +30,22 @@ const AddClass = () => {
           const image = result.data.display_url;
           data.enroll = 0;
           data.status = "pending";
-          data.image = image
+          data.image = image;
           axiosSecure
             .post("/addClass", data)
             .then((result) => {
               useToast("success", result.data.message);
+              setLoading(false);
             })
             .catch((error) => {
               useToast("error", error);
+              setLoading(false);
             });
         }
       })
       .catch((error) => {
         useToast("error", error);
+        setLoading(false);
       });
   };
 
@@ -79,7 +83,10 @@ const AddClass = () => {
             type="number"
             placeholder="Available seats"
             className="input input-bordered input-md w-full mt-5"
-            {...register("availableSeats", { required: true ,setValueAs:(value) => parseInt(value) })}
+            {...register("availableSeats", {
+              required: true,
+              setValueAs: (value) => parseInt(value),
+            })}
           />
           <input
             type="number"
@@ -94,6 +101,12 @@ const AddClass = () => {
             className="file-input file-input-bordered file-input-md w-full mt-5"
           />
 
+          {loading && (
+            <div className="flex justify-center mt-5">
+              {" "}
+              <span className="loading loading-spinner loading-md"></span>
+            </div>
+          )}
           <input
             className="btn bg-red-700 text-white mt-5 text-center w-full"
             type="submit"

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { AuthContext } from "../../../Providers/AuthProvider";
 import { useQuery } from "react-query";
