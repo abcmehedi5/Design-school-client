@@ -5,10 +5,12 @@ import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { useQuery } from "react-query";
 import useToast from "../../../Hooks/useToast";
 import { AuthContext } from "../../../Providers/AuthProvider";
+import { useNavigate } from "react-router-dom";
 
 const PopulerClass = () => {
   const { user } = useContext(AuthContext);
   const [axiosSecure] = useAxiosSecure()
+  const navigate = useNavigate()
   const {data:classes =[], isLoading} = useQuery({
     queryKey:["classes"],
     queryFn: async () =>{
