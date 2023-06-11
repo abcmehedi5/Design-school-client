@@ -195,12 +195,7 @@ const MangeClasses = () => {
                 placeholder="Type Message"
                 className="input input-bordered w-full h-40"
               />
-              {/* <input
-                onClick={handleSend}
-                className="btn absolute bottom-5 left-5"
-                type="button"
-                value="send"
-              /> */}
+
 
               <button
                 onClick={handleSend}

@@ -34,7 +34,7 @@ const InstructorHome = () => {
     },
   });
 
-
+console.log(classes);
 
   const colors = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "red", "pink"];
   const data = [
